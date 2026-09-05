@@ -109,6 +109,48 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
   .sec-head .tag{margin-left:0;width:100%}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------------------------------------------------------------------------
+   The Hard Count — the weekly dispatch.
+   Set as a letter, not a chart caption: wider measure, larger type, an amber
+   rule to mark it as the one section written by a person rather than derived
+   from the data.
+   --------------------------------------------------------------------------- */
+.dispatch{
+  border-left:3px solid var(--amber);
+  padding-left:clamp(16px,3vw,32px);
+}
+.dispatch .sec-head h2{ color:var(--amber); }
+.dispatch-dateline{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin:-4px 0 22px;
+}
+.dispatch-body{
+  max-width:64ch;
+  font-size:1.06rem;
+  line-height:1.72;
+}
+.dispatch-body p{ margin:0 0 1.05em; }
+.dispatch-body em{
+  font-style:normal;
+  font-weight:500;
+  color:var(--chalk);
+  border-bottom:1px solid var(--line);
+}
+.dispatch-body strong{ color:var(--chalk); font-weight:600; }
+.dispatch-body .signoff{
+  margin-top:1.5em;
+  padding-top:1.1em;
+  border-top:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:.85rem;
+  letter-spacing:.02em;
+  color:var(--amber);
+}
 </style>
 </head>
 <body>
@@ -126,6 +168,63 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
     <div class="seg" id="seasons" role="group" aria-label="Season"></div>
     <span class="hint">Click any manager to follow them across every figure</span>
   </div>
+
+  <section class="dispatch" id="hard-count">
+    <div class="sec-head">
+      <h2>The Hard Count</h2>
+      <span class="tag">Week 0</span>
+    </div>
+    <p class="dispatch-dateline">Draft Week · 2026</p>
+    <div class="dispatch-body">
+      <p>Gentlemen. The Bay Arians return for 2026.</p>
+
+<p>Same twelve degenerates, same twelve filthy team names, which tells you exactly
+how much therapy happened this offseason. None. The answer is none.</p>
+
+<p>I pulled four years of league data. It's worse than you remember.</p>
+
+<p><strong>The number one seed has never won this league.</strong> Not once. Four for
+four. Second, fourth, fourth, second. You can spend fourteen weeks proving you are
+the best team here, and all it buys you is a better seat to watch somebody else
+lift the trophy.</p>
+
+<p>Ask <em>Pass me the Bijan</em>. In 2024 that roster put up 1,751 — still the most
+anyone has ever scored in this league — went 12-2 as the one seed, and finished
+fourth. So last year he stopped being clever, paid $73 for Bijan Robinson, the most
+expensive man in Bay Arians history, named the team after him, and won it from the
+two seed. Subtlety is dead and he shot it himself.</p>
+
+<p>Ask <em>Put It In Her-bert</em>, second-highest total ever recorded, 12-2, one seed,
+lost the final anyway. The two greatest offenses in the history of this league have
+zero rings between them. And in Week 17, a team named Put It In Her-bert benched
+Justin Herbert. Built the entire franchise around putting it in, then pulled out
+early.</p>
+
+<p>Meanwhile <em>Crazy Rich Achanes</em> won this thing twice — once under a different
+name in 2022, then again in 2024 at 7-7 — and left the league entirely. Two titles
+and he walked straight out of the casino. Most disrespectful man in our history.</p>
+
+<p><em>Take this Tunsilitis</em> made six roster moves all season, went 4-10, and posted
+the single unluckiest year in four seasons of league history. Those scores deserved
+six wins. They got four. Genuinely robbed, and genuinely not paying attention.
+Impressive to do both.</p>
+
+<p><em>Milk Hunter</em> went the other direction: 78 roster moves, more than the bottom
+four teams combined, to finish exactly 7-7. Milked that wire raw for four straight
+months and landed on .500.</p>
+
+<p><em>The Ja'Marjacksons</em> scored 1,253 — the lowest full season anyone has ever
+recorded here — and in Week 17 started zero quarterbacks with Lamar Jackson on the
+bench. That is not a bad lineup. That is the absence of one.</p>
+
+<p>As for me: four seasons in this league, and I have been unlucky in every single
+one of them. Not one year has my record matched what my scores actually deserved.
+Four years, zero good breaks, and a running tab of three full wins the schedule owes
+me. The whole league finishes on me and calls it parity. <em>Egbukake</em>, truly.</p>
+
+<p class="signoff">$200 auction. Everyone's 0-0. Bring cash and poor judgment.</p>
+    </div>
+  </section>
 
   <section>
     <div class="sec-head"><h2>The Luck Board</h2><span class="tag">Selected season</span></div>
