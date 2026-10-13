@@ -104,6 +104,7 @@ section{margin:74px 0 0}
 
 .figure{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 18px 10px}
 .figure.tall{padding-bottom:18px}
+.figure{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
 /* ---------- svg primitives ---------- */
 .grid line{stroke:var(--line-soft);stroke-width:1}
@@ -168,6 +169,9 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
 @media (max-width:640px){
   body{font-size:16px}
   .sec-head .tag{margin-left:0;width:100%}
+  .dispatch-body .rankings li{grid-template-columns:2ch 3ch 1fr;gap:.5em}
+  .dispatch-body .callout,
+  .dispatch-body .rankings{padding:.8em .85em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
@@ -664,12 +668,17 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
     let raf = 0;
 
     function render() {
-      const w = container.clientWidth || 640;
+      // A chart never draws narrower than its labels plus a usable plot. On a
+      // phone that makes it wider than its frame, and the frame scrolls
+      // sideways (.figure is overflow-x:auto) instead of crushing the marks.
+      const avail = container.clientWidth || 640;
+      const floor = opts.minWidth || (margin.left + margin.right + 240);
+      const w = Math.max(avail, floor);
       const h = Math.max(minHeight, opts.height || Math.round(w * aspect));
       container.textContent = '';
       svg = AL.svg('svg', {
         viewBox: `0 0 ${w} ${h}`,
-        width: '100%', height: h,
+        width: w > avail ? w : '100%', height: h,
         role: 'img',
         'aria-label': opts.label || '',
       });
@@ -1230,6 +1239,7 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
       .map((p) => p.person_id);
     const chart = AL.chart(host, {
       height: 62 + ids.length * 34,
+      minWidth: 128 + 12 + ids.length * 30,
       margin: { top: 96, right: 12, bottom: 12, left: 128 },
       label: 'All-time head to head records',
       render(ctx) {
