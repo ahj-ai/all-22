@@ -661,19 +661,22 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
   /* ------------------------------------------------------------- chart shell */
 
   AL.chart = function (container, opts) {
-    const margin = Object.assign({ top: 16, right: 16, bottom: 34, left: 44 }, opts.margin || {});
+    const wideMargin = Object.assign({ top: 16, right: 16, bottom: 34, left: 44 }, opts.margin || {});
+    let margin = wideMargin;
     const aspect = opts.aspect || 0.5;
     const minHeight = opts.minHeight || 220;
     let svg = null;
     let raf = 0;
 
     function render() {
-      // A chart never draws narrower than its labels plus a usable plot. On a
-      // phone that makes it wider than its frame, and the frame scrolls
-      // sideways (.figure is overflow-x:auto) instead of crushing the marks.
+      // Two ways to survive a phone. A chart whose gutters are label room can
+      // give some back (narrowMargin). A chart that is a grid cannot shrink at
+      // all, so it keeps a minWidth and its frame scrolls sideways instead
+      // (.figure is overflow-x:auto).
       const avail = container.clientWidth || 640;
-      const floor = opts.minWidth || (margin.left + margin.right + 240);
-      const w = Math.max(avail, floor);
+      margin = avail < 520 && opts.narrowMargin
+        ? Object.assign({}, wideMargin, opts.narrowMargin) : wideMargin;
+      const w = Math.max(avail, opts.minWidth || 0);
       const h = Math.max(minHeight, opts.height || Math.round(w * aspect));
       container.textContent = '';
       svg = AL.svg('svg', {
@@ -938,6 +941,7 @@ footer{margin-top:86px;padding-top:24px;border-top:1px solid var(--line);
       chart = AL.chart(host, {
         height: Math.max(300, teams.length * 34 + 54),
         margin: { top: 24, right: 96, bottom: 30, left: 200 },
+        narrowMargin: { left: 158, right: 54 },
         label: 'Actual wins versus all-play expected wins',
         render(ctx) {
           const maxAbs = Math.max(1, ...teams.map((t) => Math.abs(t.all_play.luck_w)));
